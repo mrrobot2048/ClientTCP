@@ -33,15 +33,21 @@
             // 
             // txtServerResult
             // 
+            this.txtServerResult.BackColor = System.Drawing.Color.Black;
+            this.txtServerResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtServerResult.Font = new System.Drawing.Font("ArcadeClassic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtServerResult.ForeColor = System.Drawing.Color.LawnGreen;
             this.txtServerResult.Location = new System.Drawing.Point(12, 12);
             this.txtServerResult.Name = "txtServerResult";
-            this.txtServerResult.Size = new System.Drawing.Size(198, 20);
+            this.txtServerResult.ReadOnly = true;
+            this.txtServerResult.Size = new System.Drawing.Size(198, 16);
             this.txtServerResult.TabIndex = 0;
             // 
             // MainClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(656, 301);
             this.Controls.Add(this.txtServerResult);
             this.Name = "MainClient";
