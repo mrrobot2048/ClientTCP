@@ -37,20 +37,24 @@
             this.txtServerResult.BackColor = System.Drawing.Color.Black;
             this.txtServerResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtServerResult.Font = new System.Drawing.Font("ArcadeClassic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServerResult.ForeColor = System.Drawing.Color.LawnGreen;
-            this.txtServerResult.Location = new System.Drawing.Point(446, 12);
+            this.txtServerResult.ForeColor = System.Drawing.Color.Black;
+            this.txtServerResult.Location = new System.Drawing.Point(620, 273);
             this.txtServerResult.Name = "txtServerResult";
             this.txtServerResult.ReadOnly = true;
-            this.txtServerResult.Size = new System.Drawing.Size(198, 16);
+            this.txtServerResult.Size = new System.Drawing.Size(24, 16);
             this.txtServerResult.TabIndex = 0;
+            this.txtServerResult.Visible = false;
             this.txtServerResult.TextChanged += new System.EventHandler(this.txtServerResult_TextChanged);
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.Color.Black;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.ForeColor = System.Drawing.Color.Lime;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(282, 95);
+            this.listBox1.Size = new System.Drawing.Size(282, 91);
             this.listBox1.TabIndex = 1;
             // 
             // MainClient
@@ -62,7 +66,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtServerResult);
             this.Name = "MainClient";
-            this.Text = "Form1";           
+            this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
 

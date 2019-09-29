@@ -57,9 +57,7 @@ namespace Client
             {
                 listBox1.Items.Add(txtServerResult.Lines[lines - 1]);
                 lines++;
-
             }
-
         }
     }
 }
