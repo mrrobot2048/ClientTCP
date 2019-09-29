@@ -18,15 +18,16 @@ namespace Client
             try
             {
                 TcpListener1 = new TcpListener(IPAddress.Any, port);                
-                String localHostName = Dns.GetHostName();
+                
                 TcpListener1.Start();
                 TcpListener1.AcceptSocket();
-                MessageBox.Show("Connection Successfull!! " + localHostName);
+                MessageBox.Show("Connection Successfull!! ");
             }
             catch (Exception err) { return; }
         }
         public MainClient()
         {
+            
             InitializeComponent();
             txtServerResult.Text = "My Ipuerto >> " + port;
         }

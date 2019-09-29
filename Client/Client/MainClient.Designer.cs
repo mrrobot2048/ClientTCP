@@ -52,6 +52,7 @@
             this.Controls.Add(this.txtServerResult);
             this.Name = "MainClient";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
