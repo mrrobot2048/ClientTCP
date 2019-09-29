@@ -4,37 +4,62 @@ using System.Net.Sockets;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Linq;
 
 namespace Client
 {
     public partial class MainClient : Form
     {
-        public static int port = 8888; 
-        public static TcpListener TcpListener1;
-        public static Thread connect = new Thread(waitConnection);
 
-        public static void waitConnection()
-        {
-            try
-            {
-                TcpListener1 = new TcpListener(IPAddress.Any, port);                
-                
-                TcpListener1.Start();
-                TcpListener1.AcceptSocket();
-                MessageBox.Show("Connection Successfull!! ");
-            }
-            catch (Exception err) { return; }
-        }
+        Socket server = null;
+        public static int numlines = 0;
+
         public MainClient()
         {
-            
             InitializeComponent();
-            txtServerResult.Text = "My Ipuerto >> " + port;
-        }
 
-        private void MainClient_Load(object sender, EventArgs e)
+            Socket client = null;
+            try
+            {
+
+
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                server.Bind(new IPEndPoint(IPAddress.Any, 8888));
+                server.Listen(100);
+                txtServerResult.Text = "Esperando conexión del servidor... ";
+                client = server.Accept();
+                txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";
+                txtServerResult.Text = "Datos Server........................." + client.LocalEndPoint;
+                txtServerResult.Text = "Datos Cliente........................" + client.RemoteEndPoint;
+            }
+
+
+
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (server != null)
+                {
+                    server.Close();
+                }
+
+            }
+            Console.Read();
+        }
+        private void txtServerResult_TextChanged(object sender, EventArgs e)
         {
-            connect.Start();
+            numlines = txtServerResult.Lines.Count();
+            int lines = 1;
+            while (lines <= numlines)
+            {
+                listBox1.Items.Add(txtServerResult.Lines[lines - 1]);
+                lines++;
+
+            }
+
         }
     }
 }
