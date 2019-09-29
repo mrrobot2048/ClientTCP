@@ -10,17 +10,17 @@ namespace Client
     public partial class MainClient : Form
     {
         public static int port = 8888; 
-        public static TcpListener TcpListener;
-        public static Thread conn = new Thread(waitConnection);
+        public static TcpListener TcpListener1;
+        public static Thread connect = new Thread(waitConnection);
 
         public static void waitConnection()
         {
             try
             {
-                TcpListener = new TcpListener(IPAddress.Any, port);                
+                TcpListener1 = new TcpListener(IPAddress.Any, port);                
                 String localHostName = Dns.GetHostName();
-                TcpListener.Start();
-                TcpListener.AcceptSocket();
+                TcpListener1.Start();
+                TcpListener1.AcceptSocket();
                 MessageBox.Show("Connection Successfull!! " + localHostName);
             }
             catch (Exception err) { return; }
@@ -33,7 +33,7 @@ namespace Client
 
         private void MainClient_Load(object sender, EventArgs e)
         {
-            conn.Start();
+            connect.Start();
         }
     }
 }
