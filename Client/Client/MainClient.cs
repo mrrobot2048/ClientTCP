@@ -43,8 +43,8 @@ namespace Client
 
 
                 txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";
-                txtServerResult.Text = "Datos Server........................." + client.LocalEndPoint;
-                txtServerResult.Text = "Datos Client........................" + client.RemoteEndPoint;
+                
+                txtServerResult.Text = "Date Client........................." + client.RemoteEndPoint;
                 txtServerResult.Text = "Name Client........................." + Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
 
@@ -60,8 +60,8 @@ namespace Client
                 if (client != null)
                 {
                     client.Close();
-                    //client.Shutdown(SocketShutdown.Both);
-                    client.Close();
+                    
+                    
                 }
 
             }
