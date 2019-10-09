@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Linq;
+using System.Text;
 
 namespace Client
 {
@@ -12,13 +13,18 @@ namespace Client
     {
 
         Socket server = null;
+        Socket client = null;
         public static int numlines = 0;
 
         public MainClient()
         {
             InitializeComponent();
+            ConnectClient();
 
-            Socket client = null;
+        }
+
+        private void ConnectClient()
+        {
             try
             {
 
@@ -28,12 +34,22 @@ namespace Client
                 server.Listen(100);
                 txtServerResult.Text = "Esperando conexión del servidor... ";
                 client = server.Accept();
+
+                byte[] bytes = new byte[1024];
+                int bytesRec = client.Receive(bytes);
+
+                
+
+
+
                 txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";
                 txtServerResult.Text = "Datos Server........................." + client.LocalEndPoint;
-                txtServerResult.Text = "Datos Cliente........................" + client.RemoteEndPoint;
+                txtServerResult.Text = "Datos Client........................" + client.RemoteEndPoint;
+                txtServerResult.Text = "Name Client........................." + Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+
+
             }
-
-
 
             catch (IOException e)
             {
@@ -41,13 +57,14 @@ namespace Client
             }
             finally
             {
-                if (server != null)
+                if (client != null)
                 {
-                    server.Close();
+                    client.Close();
+                    //client.Shutdown(SocketShutdown.Both);
+                    client.Close();
                 }
 
             }
-            Console.Read();
         }
         private void txtServerResult_TextChanged(object sender, EventArgs e)
         {
