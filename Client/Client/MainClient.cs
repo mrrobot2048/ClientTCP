@@ -38,15 +38,42 @@ namespace Client
                 byte[] bytes = new byte[1024];
                 int bytesRec = client.Receive(bytes);
 
-                
 
-
-
-                txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";
-                
+                txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";                
                 txtServerResult.Text = "Date Client........................." + client.RemoteEndPoint;
+                txtServerResult.Text = "Date Client........................." + client.LocalEndPoint;
                 txtServerResult.Text = "Name Client........................." + Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
+
+                
+
+                listView1.View = View.Details;
+                listView1.GridLines = true;
+                listView1.FullRowSelect = true;
+
+                //Add column header
+                listView1.Columns.Add("Name PC");
+                listView1.Columns.Add("IP/PC");
+                listView1.Columns.Add("Port");
+
+                //Add items in the listview
+                string[] arr = new string[4];
+                ListViewItem itm;
+
+                //Add first item
+                arr[0] = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                arr[1] = client.RemoteEndPoint.ToString().Split(':')[0]; 
+                arr[2] = client.LocalEndPoint.ToString().Split(':')[1];
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+
+                /*Add second item
+                arr[0] = "ella";
+                arr[1] = "perro";
+                arr[2] = "ppp";
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+                */
 
 
             }

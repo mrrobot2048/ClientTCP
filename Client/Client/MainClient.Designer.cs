@@ -30,6 +30,7 @@
         {
             this.txtServerResult = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // txtServerResult
@@ -59,12 +60,23 @@
             this.listBox1.Size = new System.Drawing.Size(416, 162);
             this.listBox1.TabIndex = 1;
             // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 145);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(449, 144);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
             // MainClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(656, 301);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtServerResult);
             this.Name = "MainClient";
@@ -78,6 +90,7 @@
 
         private System.Windows.Forms.TextBox txtServerResult;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 
