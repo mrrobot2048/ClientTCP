@@ -51,11 +51,6 @@ namespace Client
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
 
-                //Add column header
-                listView1.Columns.Add("Name PC");
-                listView1.Columns.Add("IP/PC");
-                listView1.Columns.Add("Port");
-
                 //Add items in the listview
                 string[] arr = new string[4];
                 ListViewItem itm;
