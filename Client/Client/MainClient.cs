@@ -14,6 +14,7 @@ namespace Client
     {
 
         public Socket server;
+        public int port;
         public static int numlines = 0;
         public byte[] bytes = new byte[1024];
       
@@ -43,16 +44,13 @@ namespace Client
                 txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";
                 
                 txtServerResult.Text = "Datos Cliente........................" + client.RemoteEndPoint;
+                txtServerResult.Text = "Datos Cliente........................" + client.LocalEndPoint;
                 txtServerResult.Text = "Datos Cliente........................" + Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
                 listView1.View = View.Details;
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
-
-                //Add column header
-                listView1.Columns.Add("Name PC");
-                listView1.Columns.Add("IP/PC");
-                listView1.Columns.Add("Port");
+          
 
                 //Add items in the listview
                 string[] arr = new string[4];
@@ -60,25 +58,13 @@ namespace Client
 
                 //Add first item
                 arr[0] = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                arr[1] = "hola";
-                arr[2] = "esto";
+                arr[1] = client.RemoteEndPoint.ToString().Split(':')[0];
+                arr[2] = client.LocalEndPoint.ToString().Split(':')[1]; ;
                 itm = new ListViewItem(arr);
                 listView1.Items.Add(itm);
-
-                //Add second item
-                arr[0] = "ella";
-                arr[1] = "perro";
-                arr[2] = "ppp";
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
-
-
-
 
 
             }
-
-
 
             catch (IOException e)
             {
@@ -96,7 +82,6 @@ namespace Client
         }
 
 
-
         private void txtServerResult_TextChanged(object sender, EventArgs e)
         {
             numlines = txtServerResult.Lines.Count();
@@ -106,17 +91,6 @@ namespace Client
                 listBox1.Items.Add(txtServerResult.Lines[lines - 1]);
                 lines++;
             }
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        private void MainClient_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }
