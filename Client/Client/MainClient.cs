@@ -37,12 +37,12 @@ namespace Client
 
                 byte[] bytes = new byte[1024];
                 int bytesRec = client.Receive(bytes);
-
+                String decoded = Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
                 txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";                
                 txtServerResult.Text = "Date Client........................." + client.RemoteEndPoint;
                 txtServerResult.Text = "Date Client........................." + client.LocalEndPoint;
-                txtServerResult.Text = "Name Client........................." + Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                txtServerResult.Text = "Name Client........................." + decoded;
 
 
                 
@@ -56,9 +56,10 @@ namespace Client
                 ListViewItem itm;
 
                 //Add first item
-                arr[0] = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                arr[0] = decoded;
                 arr[1] = client.RemoteEndPoint.ToString().Split(':')[0]; 
                 arr[2] = client.LocalEndPoint.ToString().Split(':')[1];
+                arr[3] = "";
                 itm = new ListViewItem(arr);
                 listView1.Items.Add(itm);
 
