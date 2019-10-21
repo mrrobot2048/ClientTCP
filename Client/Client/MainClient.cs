@@ -12,12 +12,14 @@ namespace Client
     public partial class MainClient : Form
     {
 
-        Socket server = null;
-        Socket client = null;
+        Socket server;
+        Socket client;
         public static int numlines = 0;
 
         public MainClient()
         {
+
+           
             InitializeComponent();
             ConnectClient();
 
@@ -35,42 +37,37 @@ namespace Client
                 txtServerResult.Text = "Esperando conexión del servidor... ";
                 client = server.Accept();
 
-                byte[] bytes = new byte[1024];
-                int bytesRec = client.Receive(bytes);
+                byte[] bytes = new byte[1024];     
+                int bytesRec = client.Receive(bytes);             
                 String decoded = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+               
 
                 txtServerResult.Text = "Nueva conexión de servidor aceptada ... ";                
                 txtServerResult.Text = "Date Client........................." + client.RemoteEndPoint;
                 txtServerResult.Text = "Date Client........................." + client.LocalEndPoint;
-                txtServerResult.Text = "Name Client........................." + decoded;
 
-
+                string[] lines = decoded.Split('\n');
+                string MName = lines[0];
+                string UName = lines[1];
+                string OS = lines[2];
+                string AV = lines[3];
                 
-
                 listView1.View = View.Details;
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
 
                 //Add items in the listview
-                string[] arr = new string[4];
+                string[] arr = new string[5];
                 ListViewItem itm;
 
                 //Add first item
-                arr[0] = decoded;
-                arr[1] = client.RemoteEndPoint.ToString().Split(':')[0]; 
-                arr[2] = client.LocalEndPoint.ToString().Split(':')[1];
-                arr[3] = "";
+                arr[0] = MName;
+                arr[1] = UName;
+                arr[2] = client.RemoteEndPoint.ToString().Split(':')[0];
+                arr[3] = OS;
+                arr[4] = AV;
                 itm = new ListViewItem(arr);
                 listView1.Items.Add(itm);
-
-                /*Add second item
-                arr[0] = "ella";
-                arr[1] = "perro";
-                arr[2] = "ppp";
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
-                */
-
 
             }
 
